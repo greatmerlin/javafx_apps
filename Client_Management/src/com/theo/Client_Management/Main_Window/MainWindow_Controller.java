@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -52,7 +53,7 @@ public class MainWindow_Controller implements Initializable {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainAnchorPane.getScene().getWindow());
         dialog.setTitle("Add a new Client");
-//        dialog.setHeaderText("Create a new Client");
+//        dialog.setHeaderText("Create a new Client");  // use a header instead of a label
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../New_Client_Window/New_Client.fxml"));
@@ -88,6 +89,12 @@ public class MainWindow_Controller implements Initializable {
         listOfClients.setItems(Client_Data.getInstance().getClients());                 // or from here load everything
         listOfClients.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         listOfClients.getSelectionModel().selectFirst();
+
+        listOfClients.setEditable(true);                                        // to be able to edit cells
+        firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());    // to be able to edit cells
+        lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());     // to be able to edit cells
+
+        listOfClients.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);  // be able to select more than one cells at once
     }
 
     public void deleteSelectedClient() {
@@ -111,5 +118,20 @@ public class MainWindow_Controller implements Initializable {
                 }
             }
         }
+    }
+
+    public void editFirstName(TableColumn.CellEditEvent editedCell){
+
+        Client clientSelected = listOfClients.getSelectionModel().getSelectedItem(); // return a person Object, the one that we select
+
+        clientSelected.setFirstName(editedCell.getNewValue().toString());
+
+    }
+
+    public void editLastName(TableColumn.CellEditEvent editedCell){
+
+        Client clientSelected = listOfClients.getSelectionModel().getSelectedItem(); // return a person Object, the one that we select
+
+        clientSelected.setLastName(editedCell.getNewValue().toString());
     }
 }

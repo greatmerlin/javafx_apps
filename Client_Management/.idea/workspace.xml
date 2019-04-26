@@ -64,8 +64,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/theo/Client_Management/Run_App/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="33" column="47" lean-forward="true" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+            <state relative-caret-position="150">
+              <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#547#548#0" expanded="true" />
@@ -78,11 +78,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/theo/Client_Management/Main_Window/MainWindow_Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="766">
-              <caret line="110" column="17" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="17" />
+            <state relative-caret-position="270">
+              <caret line="96" column="133" selection-start-line="96" selection-start-column="133" selection-end-line="96" selection-end-column="133" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/theo/Client_Management/Model/grey_Theme.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="32" column="1" lean-forward="true" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -179,6 +188,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -199,9 +209,11 @@
         <option value="$PROJECT_DIR$/src/com/theo/Client_Management/Model/Client_Data.java" />
         <option value="$PROJECT_DIR$/src/com/theo/Client_Management/Run_App/Main.java" />
         <option value="$PROJECT_DIR$/src/com/theo/Client_Management/Run_App/Application.java" />
-        <option value="$PROJECT_DIR$/src/com/theo/Client_Management/Run_App/App.java" />
         <option value="$PROJECT_DIR$/src/com/theo/Client_Management/New_Client_Window/New_Client_Controller.java" />
         <option value="$PROJECT_DIR$/src/com/theo/Client_Management/Main_Window/MainWindow_Controller.java" />
+        <option value="$PROJECT_DIR$/src/com/theo/Client_Management/Model/AppStyle.css" />
+        <option value="$PROJECT_DIR$/src/com/theo/Client_Management/Model/grey_Theme.css" />
+        <option value="$PROJECT_DIR$/src/com/theo/Client_Management/Run_App/App.java" />
       </list>
     </option>
   </component>
@@ -286,6 +298,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/java/Git-Downloads/challenges_java/challenges_java/GUI_FMXL_LAB" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
@@ -412,12 +425,12 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-      <workItem from="1556233822145" duration="24312000" />
+      <workItem from="1556233822145" duration="25984000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25614000" />
+    <option name="totallyTimeSpent" value="27286000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -532,6 +545,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/listOfClientsText.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/theo/Client_Management/Main_Window/MainWindow_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="96" column="133" selection-start-line="96" selection-start-column="133" selection-end-line="96" selection-end-column="133" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/theo/Client_Management/New_Client_Window/New_Client_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -542,23 +568,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/theo/Client_Management/Main_Window/MainWindow_Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/com/theo/Client_Management/Model/grey_Theme.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="766">
-          <caret line="110" column="17" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="301">
+          <caret line="32" column="1" lean-forward="true" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/listOfClientsText.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/theo/Client_Management/Run_App/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="33" column="47" lean-forward="true" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+        <state relative-caret-position="150">
+          <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#547#548#0" expanded="true" />

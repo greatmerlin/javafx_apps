@@ -16,7 +16,7 @@ public class App extends javafx.application.Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../Main_Window/MainWindow.fxml"));
         primaryStage.setTitle("Business App");
-        primaryStage.setScene(new Scene(root, 540, 400));
+        primaryStage.setScene(new Scene(root, 675, 424));
         primaryStage.show();
     }
 

@@ -10,24 +10,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.theo.Client_Management.Main_Window.MainWindow_Controller">
+<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="675.0" stylesheets="@../Model/grey_Theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.theo.Client_Management.Main_Window.MainWindow_Controller">
    <children>
-      <Label alignment="CENTER" layoutX="195.0" layoutY="14.0" text="Client's List">
+      <Label alignment="CENTER" layoutX="274.0" layoutY="14.0" text="Client's List">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <VBox layoutX="52.0" layoutY="46.0" prefHeight="473.0" prefWidth="435.0">
+      <VBox layoutX="52.0" layoutY="46.0" prefHeight="369.0" prefWidth="570.0">
          <children>
-            <TableView fx:id="listOfClients" prefHeight="286.0" prefWidth="427.0">
+            <TableView fx:id="listOfClients" prefHeight="313.0" prefWidth="400.0">
               <columns>
-                <TableColumn fx:id="firstNameColumn" prefWidth="124.0" text="First Name" />
-                <TableColumn fx:id="lastNameColumn" prefWidth="114.0" text="Last Name" />
-                  <TableColumn prefWidth="75.0" text="Income" />
-                  <TableColumn fx:id="dateOfBirthColumn" prefWidth="121.0" text="Date of Birth" />
+                <TableColumn fx:id="firstNameColumn" onEditCommit="#editFirstName" prefWidth="124.0" text="First Name" />
+                <TableColumn fx:id="lastNameColumn" onEditCommit="#editLastName" prefWidth="134.0" text="Last Name" />
+                  <TableColumn prefWidth="133.0" text="Income" />
+                  <TableColumn fx:id="dateOfBirthColumn" prefWidth="178.0" text="Date of Birth" />
               </columns>
             </TableView>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <HBox prefHeight="63.0" prefWidth="480.0" spacing="120.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#newClientButtonPushed" prefHeight="20.0" prefWidth="100.0" text="New Client" />
                   <Button mnemonicParsing="false" onAction="#deleteSelectedClient" text="Delete Client" />
