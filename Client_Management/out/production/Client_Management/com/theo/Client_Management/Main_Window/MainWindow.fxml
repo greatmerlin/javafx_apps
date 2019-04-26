@@ -30,6 +30,7 @@
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#newClientButtonPushed" prefHeight="20.0" prefWidth="100.0" text="New Client" />
+                  <Button mnemonicParsing="false" onAction="#deleteSelectedClient" text="Delete Client" />
                   <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleCloseButton" prefHeight="20.0" prefWidth="100.0" text="Exit" />
                </children>
                <padding>
