@@ -19,7 +19,7 @@
       </Label>
       <VBox layoutX="52.0" layoutY="46.0" prefHeight="473.0" prefWidth="435.0">
          <children>
-            <TableView prefHeight="286.0" prefWidth="427.0">
+            <TableView fx:id="listOfClients" prefHeight="286.0" prefWidth="427.0">
               <columns>
                 <TableColumn fx:id="firstNameColumn" prefWidth="124.0" text="First Name" />
                 <TableColumn fx:id="lastNameColumn" prefWidth="114.0" text="Last Name" />

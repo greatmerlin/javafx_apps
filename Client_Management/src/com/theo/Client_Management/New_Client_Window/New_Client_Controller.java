@@ -2,6 +2,7 @@ package com.theo.Client_Management.New_Client_Window;
 
 import com.theo.Client_Management.Model.Client;
 import com.theo.Client_Management.Main_Window.MainWindow_Controller;
+import com.theo.Client_Management.Model.Client_Data;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class New_Client_Controller implements Initializable {
@@ -23,18 +25,17 @@ public class New_Client_Controller implements Initializable {
     @FXML private TextField lastNameTextField;
     @FXML private DatePicker datePicker;
 
-    public Client completedData() {
+    public Client processResults() {
+        String firstName = firstNameTextField.getText().trim();
+        String lastName = lastNameTextField.getText().trim();
+        LocalDate pickDate = datePicker.getValue();
 
-        Client client = new Client(
-                                    firstNameTextField.getText(),
-                                    lastNameTextField.getText(),
-                                    datePicker.getValue()
-        );
-
+        Client client = new Client(firstName, lastName, pickDate);   // put all the data into a client's instance
+        Client_Data.getInstance().addClient(client);                 // use the DATA_Client class and put the client data into the Method "add client" from the Client_Data class
         return client;
     }
 
-    public void backToMainWindowButtonPushed(ActionEvent event) throws IOException {
+/*    public void backToMainWindowButtonPushed(ActionEvent event) throws IOException {
 
         Parent newClientScene = FXMLLoader.load(getClass().getResource("../Main_Window/MainWindow.fxml"));
 
@@ -43,7 +44,7 @@ public class New_Client_Controller implements Initializable {
 
         mainStage.setScene(addClient);
         mainStage.show();
-    }
+    }*/
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
