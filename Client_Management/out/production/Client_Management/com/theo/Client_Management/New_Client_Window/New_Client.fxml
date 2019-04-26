@@ -37,7 +37,7 @@
             </VBox>
          </children>
       </HBox>
-      <Label layoutX="213.0" layoutY="39.0" text="Add a New Client">
+      <Label layoutX="111.0" layoutY="43.0" text="Complete all Fields to add a new Client">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

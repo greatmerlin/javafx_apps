@@ -39,12 +39,20 @@ public class MainWindow_Controller implements Initializable {
     @FXML private TableColumn<Client, LocalDate> dateOfBirthColumn;
     @FXML private AnchorPane mainAnchorPane;
 
+    @FXML private Button closeButton;                                       // data variable for the close Button
+
+    @FXML private void handleCloseButton(){                                 // action for the close Button
+
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
+
     public void newClientButtonPushed(ActionEvent event) throws IOException {
 
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainAnchorPane.getScene().getWindow());
         dialog.setTitle("Add a new Client");
-        dialog.setHeaderText("Create a new Client");
+//        dialog.setHeaderText("Create a new Client");
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../New_Client_Window/New_Client.fxml"));
@@ -72,11 +80,13 @@ public class MainWindow_Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-/*        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("firstName"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("firstName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("lastName"));
-        dateOfBirthColumn.setCellValueFactory(new PropertyValueFactory<Client, LocalDate>("dateOfBirth"));*/
+        dateOfBirthColumn.setCellValueFactory(new PropertyValueFactory<Client, LocalDate>("dateOfBirth"));
 
-        listOfClients = new TableView<>();                                      //be able to right click delete a client
+        listOfClients.setItems(Client_Data.getInstance().getClients());                                                 // access the Client_Data and get the Clients
+
+        listOfClients = new TableView<>();                                                                              //be able to right click delete a client
         MenuItem deleteMenuItem = new MenuItem("Delete");
         deleteMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -120,4 +130,5 @@ public class MainWindow_Controller implements Initializable {
         }
 
     }
+
 }

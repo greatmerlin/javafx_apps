@@ -35,7 +35,9 @@ public class New_Client_Controller implements Initializable {
         return client;
     }
 
-/*    public void backToMainWindowButtonPushed(ActionEvent event) throws IOException {
+/*    ---- Alternative to ButtonType.CANCEL in Main Window -----
+
+     public void backToMainWindowButtonPushed(ActionEvent event) throws IOException {
 
         Parent newClientScene = FXMLLoader.load(getClass().getResource("../Main_Window/MainWindow.fxml"));
 
