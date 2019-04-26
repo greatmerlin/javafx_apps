@@ -10,9 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="540.0"
-            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.theo.Client_Management.Main_Window.MainWindow_Controller">
+<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.theo.Client_Management.Main_Window.MainWindow_Controller">
    <children>
       <Label alignment="CENTER" layoutX="195.0" layoutY="14.0" text="Client's List">
          <font>
@@ -23,10 +21,10 @@
          <children>
             <TableView prefHeight="286.0" prefWidth="427.0">
               <columns>
-                <TableColumn prefWidth="124.0" text="First Name" />
-                <TableColumn prefWidth="114.0" text="Last Name" />
+                <TableColumn fx:id="firstNameColumn" prefWidth="124.0" text="First Name" />
+                <TableColumn fx:id="lastNameColumn" prefWidth="114.0" text="Last Name" />
                   <TableColumn prefWidth="75.0" text="Income" />
-                  <TableColumn prefWidth="121.0" text="Date of Birth" />
+                  <TableColumn fx:id="dateOfBirthColumn" prefWidth="121.0" text="Date of Birth" />
               </columns>
             </TableView>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
