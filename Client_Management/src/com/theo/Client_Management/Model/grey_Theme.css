@@ -31,15 +31,3 @@
     -fx-text-fill: #272956;
     -fx-text-alignment: center;
 }
-
-.choice-box {
-
-    -fx-font: 16px "Arial";
-    -fx-text-fill: dark-primary-color;
-    -fx-text-alignment: left;
-}
-
-#detailedPerson {
-
-    -fx-background-color: divider-color;
-}

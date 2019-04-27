@@ -29,6 +29,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -104,34 +105,35 @@ public class MainWindow_Controller implements Initializable {
         allClients = listOfClients.getItems();
         selectedClient = listOfClients.getSelectionModel().getSelectedItem();
 
-        for (Client element : allClients) {
-            if (element.equals(selectedClient)){
-
+        Iterator<Client> iter = allClients.iterator();
+        while(iter.hasNext()) {
+            Client client = iter.next();
+            if (client.equals(selectedClient)) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Delete Todo Item");
                 alert.setHeaderText("Delete item: " + selectedClient.getFirstName());
                 alert.setContentText("Are you sure?  Press OK to confirm, or cancel to Back out.");
                 Optional<ButtonType> result = alert.showAndWait();
 
-                if(result.isPresent() && (result.get() == ButtonType.OK)) {
-                    Client_Data.getInstance().deleteClient(selectedClient);
+                if (result.isPresent() && (result.get() == ButtonType.OK)) {
+                    iter.remove();
                 }
             }
         }
     }
 
-    public void editFirstName(TableColumn.CellEditEvent editedCell){
+        public void editFirstName (TableColumn.CellEditEvent editedCell){
 
-        Client clientSelected = listOfClients.getSelectionModel().getSelectedItem(); // return a person Object, the one that we select
+            Client clientSelected = listOfClients.getSelectionModel().getSelectedItem(); // return a person Object, the one that we select
 
-        clientSelected.setFirstName(editedCell.getNewValue().toString());
+            clientSelected.setFirstName(editedCell.getNewValue().toString());
 
+        }
+
+        public void editLastName (TableColumn.CellEditEvent editedCell){
+
+            Client clientSelected = listOfClients.getSelectionModel().getSelectedItem(); // return a person Object, the one that we select
+
+            clientSelected.setLastName(editedCell.getNewValue().toString());
+        }
     }
-
-    public void editLastName(TableColumn.CellEditEvent editedCell){
-
-        Client clientSelected = listOfClients.getSelectionModel().getSelectedItem(); // return a person Object, the one that we select
-
-        clientSelected.setLastName(editedCell.getNewValue().toString());
-    }
-}
