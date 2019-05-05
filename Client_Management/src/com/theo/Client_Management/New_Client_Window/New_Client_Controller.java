@@ -21,9 +21,9 @@ public class New_Client_Controller implements Initializable {
         String firstName = firstNameTextField.getText().trim();
         String lastName = lastNameTextField.getText().trim();
         LocalDate pickDate = datePicker.getValue();
-//        Integer income = Integer.parseInt(incomeTextField.getText());
+        Integer income = Integer.parseInt(incomeTextField.getText());
 
-        Client client = new Client(firstName, lastName, pickDate);   // put all the data into a client's instance
+        Client client = new Client(firstName, lastName, pickDate, income);   // put all the data into a client's instance
         Client_Data.getInstance().addClient(client);                 // use the DATA_Client class and put the client data into the Method "add client" from the Client_Data class
         return client;
     }

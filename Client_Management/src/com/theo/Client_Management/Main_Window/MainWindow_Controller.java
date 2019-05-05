@@ -3,6 +3,7 @@ package com.theo.Client_Management.Main_Window;
 import com.theo.Client_Management.Model.Client;
 import com.theo.Client_Management.Model.Client_Data;
 import com.theo.Client_Management.New_Client_Window.New_Client_Controller;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +14,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +36,7 @@ public class MainWindow_Controller implements Initializable {
     @FXML private TableColumn<Client, String> firstNameColumn;
     @FXML private TableColumn<Client, String> lastNameColumn;
     @FXML private TableColumn<Client, LocalDate> dateOfBirthColumn;
-    @FXML private TableColumn<Client, Integer> incomeColumn;
+    @FXML private TableColumn<Client, Number> incomeColumn;
     @FXML private AnchorPane mainAnchorPane;
 
     @FXML private Button closeButton;                                       // data variable for the close Button
@@ -80,7 +83,7 @@ public class MainWindow_Controller implements Initializable {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("firstName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("lastName"));
         dateOfBirthColumn.setCellValueFactory(new PropertyValueFactory<Client, LocalDate>("dateOfBirth"));
-        incomeColumn.setCellValueFactory(new PropertyValueFactory<Client, Integer>("income"));
+        incomeColumn.setCellValueFactory(new PropertyValueFactory<Client, Number>("income"));
 
         listOfClients.setItems(Client_Data.getInstance().getClients());                  // access the Client_Data and get the Clients
         listOfClients.setItems(Client_Data.getInstance().getClients());                 // or from here load everything
@@ -88,7 +91,12 @@ public class MainWindow_Controller implements Initializable {
         listOfClients.getSelectionModel().selectFirst();
 
         listOfClients.setEditable(true);                                        // to be able to edit cells
+
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());    // to be able to edit cells
+        lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        incomeColumn.setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));   // edit number (int) cell
+
         dateOfBirthColumn.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
             @Override
             public String toString(LocalDate date) {
@@ -109,7 +117,7 @@ public class MainWindow_Controller implements Initializable {
             }
 
         }));
-        incomeColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
         listOfClients.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);  // be able to select more than one cells at once
     }
 
@@ -156,7 +164,6 @@ public class MainWindow_Controller implements Initializable {
 
             Client clientSelected = listOfClients.getSelectionModel().getSelectedItem();
             LocalDate date = (LocalDate)editedCell.getNewValue();
-            //LocalDate date = LocalDate.parse(editedCell.getNewValue().toString(), formatter);
             clientSelected.setDateOfBirth(date);
         }
     }

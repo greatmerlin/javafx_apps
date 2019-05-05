@@ -47,19 +47,19 @@ public class Client_Data {
 
         try {
             while ((input = br.readLine()) != null) {
-                String[] itemPieces = input.split("[\t ]+");
-//                itemPieces = new String[4];
+                String[] itemPieces = input.split("[\t ]");
+                
 
-                String firstName = itemPieces[0];
-                String lastName = itemPieces[1];
-                String dateString = itemPieces[2];
+//                String firstName = itemPieces[0];
+//                String lastName = itemPieces[1];
+//                String dateString = itemPieces[2];
 //                String incomeString = itemPieces[3];
 
 //                Integer income = Integer.parseInt(incomeString);
-                LocalDate date = LocalDate.parse(dateString, formatter);    //turn date to String
-
-                Client client = new Client(firstName, lastName, date );
-                clients.add(client);
+//                LocalDate date = LocalDate.parse(dateString, formatter);    //turn date to String
+//
+//                Client client = new Client(firstName, lastName, date, income);
+//                clients.add(client);
 
             }
 
