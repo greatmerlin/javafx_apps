@@ -1,33 +1,162 @@
 package com.theo.Client_Management.Main_Window;
 
+import com.theo.Client_Management.Model.Client;
+import com.theo.Client_Management.Model.Client_Data;
+import com.theo.Client_Management.New_Client_Window.New_Client_Controller;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Iterator;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainWindow_Controller implements Initializable {
 
+    final DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+    @FXML private TableView<Client> listOfClients;
+    @FXML private TableColumn<Client, String> firstNameColumn;
+    @FXML private TableColumn<Client, String> lastNameColumn;
+    @FXML private TableColumn<Client, LocalDate> dateOfBirthColumn;
+    @FXML private TableColumn<Client, Integer> incomeColumn;
+    @FXML private AnchorPane mainAnchorPane;
+
+    @FXML private Button closeButton;                                       // data variable for the close Button
+
+    @FXML private void handleCloseButton(){                                 // action for the close Button
+
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
+
     public void newClientButtonPushed(ActionEvent event) throws IOException {
 
-        Parent newClientScene = FXMLLoader.load(getClass().getResource("../New_Client_Window/New_Client.fxml"));
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(mainAnchorPane.getScene().getWindow());
+        dialog.setTitle("Add a new Client");
+//        dialog.setHeaderText("Create a new Client");  // use a header instead of a label
 
-        Scene addClient = new Scene(newClientScene,600,400);
-        Stage mainStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("../New_Client_Window/New_Client.fxml"));
 
-        mainStage.setScene(addClient);
-        mainStage.show();
+        try {
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+        }catch (IOException e){
+            System.out.println("Could't load the dialog");
+            e.printStackTrace();
+            return;
+        }
+
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            New_Client_Controller controller = fxmlLoader.getController();
+            Client newClient = controller.processResults();
+            listOfClients.getSelectionModel().select(newClient);
+        }
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("lastName"));
+        dateOfBirthColumn.setCellValueFactory(new PropertyValueFactory<Client, LocalDate>("dateOfBirth"));
+        incomeColumn.setCellValueFactory(new PropertyValueFactory<Client, Integer>("income"));
+
+        listOfClients.setItems(Client_Data.getInstance().getClients());                  // access the Client_Data and get the Clients
+        listOfClients.setItems(Client_Data.getInstance().getClients());                 // or from here load everything
+        listOfClients.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        listOfClients.getSelectionModel().selectFirst();
+
+        listOfClients.setEditable(true);                                        // to be able to edit cells
+        firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());    // to be able to edit cells
+        dateOfBirthColumn.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
+            @Override
+            public String toString(LocalDate date) {
+                if (date==null) {
+                    return "" ;
+                } else {
+                    return formatter.format(date);
+                }
+            }
+
+            @Override
+            public LocalDate fromString(String string) {
+                try {
+                    return LocalDate.parse(string, formatter);
+                } catch (DateTimeParseException exc) {
+                    return null ;
+                }
+            }
+
+        }));
+        incomeColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        listOfClients.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);  // be able to select more than one cells at once
     }
-}
+
+    public void deleteSelectedClient() {
+
+        ObservableList<Client> allClients;
+        Client selectedClient;
+        allClients = listOfClients.getItems();
+        selectedClient = listOfClients.getSelectionModel().getSelectedItem();
+
+        Iterator<Client> iter = allClients.iterator();
+        while(iter.hasNext()) {
+            Client client = iter.next();
+            if (client.equals(selectedClient)) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Delete Todo Item");
+                alert.setHeaderText("Delete item: " + selectedClient.getFirstName());
+                alert.setContentText("Are you sure?  Press OK to confirm, or cancel to Back out.");
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if (result.isPresent() && (result.get() == ButtonType.OK)) {
+                    iter.remove();
+                }
+            }
+        }
+    }
+
+        public void editFirstName (TableColumn.CellEditEvent editedCell){
+
+            Client clientSelected = listOfClients.getSelectionModel().getSelectedItem(); // return a person Object, the one that we select
+
+            clientSelected.setFirstName(editedCell.getNewValue().toString());
+
+        }
+
+        public void editLastName (TableColumn.CellEditEvent editedCell){
+
+            Client clientSelected = listOfClients.getSelectionModel().getSelectedItem(); // return a person Object, the one that we select
+
+            clientSelected.setLastName(editedCell.getNewValue().toString());
+        }
+
+        public void editDate (TableColumn.CellEditEvent editedCell) {
+
+            Client clientSelected = listOfClients.getSelectionModel().getSelectedItem();
+            LocalDate date = (LocalDate)editedCell.getNewValue();
+            //LocalDate date = LocalDate.parse(editedCell.getNewValue().toString(), formatter);
+            clientSelected.setDateOfBirth(date);
+        }
+    }
