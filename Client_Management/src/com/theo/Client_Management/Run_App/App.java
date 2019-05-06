@@ -1,11 +1,16 @@
 package com.theo.Client_Management.Run_App;
 
+/**
+ * @author Baxevanos Theologos
+ * @version 2.0.0
+ *
+ * */
+
 import com.theo.Client_Management.Model.Client_Data;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class App extends javafx.application.Application {

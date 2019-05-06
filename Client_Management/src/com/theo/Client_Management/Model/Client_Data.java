@@ -2,7 +2,6 @@ package com.theo.Client_Management.Model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -48,19 +47,17 @@ public class Client_Data {
         try {
             while ((input = br.readLine()) != null) {
                 String[] itemPieces = input.split("[\t ]");
-                
 
-//                String firstName = itemPieces[0];
-//                String lastName = itemPieces[1];
-//                String dateString = itemPieces[2];
-//                String incomeString = itemPieces[3];
+                String firstName = itemPieces[0];
+                String lastName = itemPieces[1];
+                String incomeString = itemPieces[2];
+                String dateString = itemPieces[3];
 
-//                Integer income = Integer.parseInt(incomeString);
-//                LocalDate date = LocalDate.parse(dateString, formatter);    //turn date to String
-//
-//                Client client = new Client(firstName, lastName, date, income);
-//                clients.add(client);
+                Integer income = Integer.parseInt(incomeString);
+                LocalDate date = LocalDate.parse(dateString, formatter);    //turn date to String
 
+                Client client = new Client(firstName, lastName, date, income);
+                clients.add(client);
             }
 
         } finally {
@@ -78,9 +75,10 @@ public class Client_Data {
             Iterator<Client> iter = clients.iterator();
             while(iter.hasNext()) {
                 Client client = iter.next();
-                bw.write(String.format("%s\t%s\t%s",
+                bw.write(String.format("%s\t%s\t%s\t%s",
                         client.getFirstName(),
                         client.getLastName(),
+                        client.getIncome(),
                         client.getDateOfBirth().format(formatter)));
                 bw.newLine();
             }
