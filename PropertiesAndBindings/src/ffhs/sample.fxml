@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<BorderPane fx:id="borderPane"  prefHeight="200.0" prefWidth="400.0"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ffhs.Controller">
+   <center>
+      <StackPane prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <Rectangle id="ra" fx:id="rectangle"
+                       arcHeight="20.0" arcWidth="30.0"
+                       fill="darkgray" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2" width="100.0" />
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>
